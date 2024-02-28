@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var btnNine: Button
     private lateinit var btnAC: Button
     private lateinit var btnC: Button
-    private lateinit var btnBackspace: Button
+    private lateinit var btnBackspace: ImageButton
     private lateinit var btnDivide: Button
     private lateinit var btnMultiply: Button
     private lateinit var btnAdd: Button
@@ -38,28 +38,51 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         //element variables
-        val tvInput = findViewById<TextView>(R.id.tvInput)
-        val btnOne = findViewById<Button>(R.id.btnOne)
-        val btnTwo = findViewById<Button>(R.id.btnTwo)
-        val btnThree = findViewById<Button>(R.id.btnThree)
-        val btnFour = findViewById<Button>(R.id.btnFour)
-        val btnFive = findViewById<Button>(R.id.btnFive)
-        val btnSix = findViewById<Button>(R.id.btnSix)
-        val btnSeven = findViewById<Button>(R.id.btnSeven)
-        val btnEight = findViewById<Button>(R.id.btnEight)
-        val btnNine = findViewById<Button>(R.id.btnNine)
-        val btnAC = findViewById<Button>(R.id.allClear)
-        val btnC = findViewById<Button>(R.id.clear)
-        val btnBackspace = findViewById<ImageButton>(R.id.btnBackspace)
-        val btnDivide = findViewById<Button>(R.id.btnDivide)
-        val btnMultiply = findViewById<Button>(R.id.btnMultiply)
-        val btnAdd = findViewById<Button>(R.id.btnAdd)
-        val btnSubtract = findViewById<Button>(R.id.btnSubtract)
-        val btnDot = findViewById<Button>(R.id.btnDot)
-        val btnZero = findViewById<Button>(R.id.btnZero)
-        val btnEqual = findViewById<Button>(R.id.btnEqual)
+        tvInput = findViewById<TextView>(R.id.tvInput)
+        btnOne = findViewById<Button>(R.id.btnOne)
+        btnTwo = findViewById<Button>(R.id.btnTwo)
+        btnThree = findViewById<Button>(R.id.btnThree)
+        btnFour = findViewById<Button>(R.id.btnFour)
+        btnFive = findViewById<Button>(R.id.btnFive)
+        btnSix = findViewById<Button>(R.id.btnSix)
+        btnSeven = findViewById<Button>(R.id.btnSeven)
+        btnEight = findViewById<Button>(R.id.btnEight)
+        btnNine = findViewById<Button>(R.id.btnNine)
+        btnAC = findViewById<Button>(R.id.allClear)
+        btnC = findViewById<Button>(R.id.clear)
+        btnBackspace = findViewById<ImageButton>(R.id.btnBackspace)
+        btnDivide = findViewById<Button>(R.id.btnDivide)
+        btnMultiply = findViewById<Button>(R.id.btnMultiply)
+        btnAdd = findViewById<Button>(R.id.btnAdd)
+        btnSubtract = findViewById<Button>(R.id.btnSubtract)
+        btnDot = findViewById<Button>(R.id.btnDot)
+        btnZero = findViewById<Button>(R.id.btnZero)
+        btnEqual = findViewById<Button>(R.id.btnEqual)
 
         currentInput = StringBuilder()
+
+        btnOne.setOnClickListener { appendNumber("1") }
+        btnTwo.setOnClickListener { appendNumber("2") }
+        btnThree.setOnClickListener { appendNumber("3") }
+        btnFour.setOnClickListener { appendNumber("4") }
+        btnFive.setOnClickListener { appendNumber("5") }
+        btnSix.setOnClickListener { appendNumber("6") }
+        btnSeven.setOnClickListener { appendNumber("7") }
+        btnEight.setOnClickListener { appendNumber("8") }
+        btnNine.setOnClickListener { appendNumber("9") }
+        btnZero.setOnClickListener { appendNumber("0") }
+
+        // Operator buttons
+        btnAdd.setOnClickListener { setOperator("+") }
+        btnSubtract.setOnClickListener { setOperator("-") }
+        btnMultiply.setOnClickListener { setOperator("×") }
+        btnDivide.setOnClickListener { setOperator("÷") }
+
+        // Other buttons
+        btnEqual.setOnClickListener { calculateResult() }
+        btnC.setOnClickListener { clearInput() }
+        btnBackspace.setOnClickListener { /* Implement backspace logic */ }
+        btnDot.setOnClickListener { /* Implement dot logic */ }
     }
 
     private fun appendNumber(number: String) {
@@ -69,8 +92,15 @@ class MainActivity : AppCompatActivity() {
 
     // Function to set the current operator
     private fun setOperator(operator: String) {//save first variable, empty currentInput
-        currentOperator = operator
-        firstNum = currentInput.toString().toDouble()
+        if(firstNum == 0.0) {
+            firstNum = currentInput.toString().toDouble()
+            currentOperator = operator
+        }
+        else{
+            if(!currentOperator.isEmpty())
+                calculateResult()
+            currentOperator = operator
+        }
         currentInput = StringBuilder()
         updateDisplay()
     }
@@ -85,18 +115,24 @@ class MainActivity : AppCompatActivity() {
             "÷" -> firstNum / secondNum
             else -> null
         }
+        tvInput.text = result.toString()
+        currentInput = StringBuilder(result.toString())
 
         updateDisplay()
     }
 
     // Function to clear input
     private fun clearInput() {
-        // Implement logic to clear the input and reset the display
+        currentInput = StringBuilder()
+        updateDisplay()
     }
 
     // Function to clear input
     private fun allClearInput() {
-        // Implement logic to clear the input and reset the display
+        firstNum = 0.0
+        currentInput = StringBuilder()
+        currentOperator = ""
+        updateDisplay()
     }
 
     // Function to update the display
