@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
 
     private var currentInput = StringBuilder()
     private var currentOperator: String = ""
-    private var firstNum: Double = 0.0
+    private var firstNum: Double? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -81,56 +81,69 @@ class MainActivity : AppCompatActivity() {
         // Other buttons
         btnEqual.setOnClickListener { calculateResult() }
         btnC.setOnClickListener { clearInput() }
-        btnBackspace.setOnClickListener { /* Implement backspace logic */ }
-        btnDot.setOnClickListener { /* Implement dot logic */ }
+        btnAC.setOnClickListener { allClearInput() }
+        btnBackspace.setOnClickListener { deleteCharacter() }
+        btnDot.setOnClickListener { appendNumber(".") }
     }
 
     private fun appendNumber(number: String) {
+        if(currentOperator == "" && currentInput.isEmpty())
+            firstNum = null
         currentInput.append(number)
         updateDisplay()
     }
 
     // Function to set the current operator
-    private fun setOperator(operator: String) {//save first variable, empty currentInput
-        if(firstNum == 0.0) {
+    private fun setOperator(operator: String) {//problema quando fai num + num + num
+        if(firstNum == null){
+            if(currentInput.isEmpty()) return
             firstNum = currentInput.toString().toDouble()
+            currentInput.clear()
             currentOperator = operator
-        }
-        else{
-            if(!currentOperator.isEmpty())
+        }else{
+            if(currentInput.isEmpty()) currentOperator = operator
+            else {
+                if(currentOperator == "")
+                    currentOperator = operator
                 calculateResult()
-            currentOperator = operator
+                firstNum = tvInput.toString().toDouble()
+                currentInput.clear()
+                currentOperator = operator
+            }
         }
-        currentInput = StringBuilder()
         updateDisplay()
     }
 
     // Function to calculate results
     private fun calculateResult() {//save second variable
+        if(currentOperator == "") return
         val secondNum: Double = currentInput.toString().toDouble()
         val result: Double? = when(currentOperator){
-            "+" -> firstNum + secondNum
-            "-" -> firstNum - secondNum
-            "×" -> firstNum * secondNum
-            "÷" -> firstNum / secondNum
+            "+" -> firstNum?.plus(secondNum)
+            "-" -> firstNum?.minus(secondNum)
+            "×" -> firstNum?.times(secondNum)
+            "÷" -> firstNum?.div(secondNum)
             else -> null
         }
-        tvInput.text = result.toString()
-        currentInput = StringBuilder(result.toString())
-
+        val formattedResult = String.format("%.12f", result).trimEnd('0').trimEnd('.')
+        tvInput.text = formattedResult
+        currentInput = StringBuilder(formattedResult)
         updateDisplay()
+        firstNum = currentInput.toString().toDouble()
+        currentInput.clear()
+        currentOperator = ""
     }
 
     // Function to clear input
     private fun clearInput() {
-        currentInput = StringBuilder()
+        currentInput.clear()
         updateDisplay()
     }
 
     // Function to clear input
     private fun allClearInput() {
-        firstNum = 0.0
-        currentInput = StringBuilder()
+        firstNum = null
+        currentInput.clear()
         currentOperator = ""
         updateDisplay()
     }
@@ -138,6 +151,13 @@ class MainActivity : AppCompatActivity() {
     // Function to update the display
     private fun updateDisplay() {
         tvInput.text = currentInput.toString()
+    }
+
+    private fun deleteCharacter(){
+        if(currentInput.isEmpty()) return
+        val length: Int = currentInput.lastIndex
+        currentInput.deleteAt(length)
+        updateDisplay()
     }
 }
 

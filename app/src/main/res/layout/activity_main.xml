@@ -66,6 +66,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:textSize="20sp"
+            app:backgroundTint="@color/lightBlue"
             android:background="@color/lightBlue"
             android:text="AC" />
 
@@ -75,13 +76,14 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:textSize="20sp"
+            app:backgroundTint="@color/lightBlue"
             android:background="@color/lightBlue"
             android:text="C" />
 
 
         <ImageButton
             android:id="@+id/btnBackspace"
-            android:layout_width="wrap_content"
+            android:layout_width="25dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:layout_weight="5"
@@ -94,8 +96,9 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:textSize="30sp"
-            android:background="#4d4d4d"
-            android:textColor="@color/green"
+            app:backgroundTint="@color/lightBlue"
+            android:background="@color/lightBlue"
+            android:textColor="@color/darkBlue"
             android:text="÷" />
     </LinearLayout>
     <LinearLayout
@@ -110,7 +113,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:textSize="20sp"
-            android:background="#4d4d4d"
+            app:backgroundTint="@color/lightBlue"
+            android:background="@color/lightBlue"
             android:text="7" />
 
         <Button
@@ -119,7 +123,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:textSize="20sp"
-            android:background="#4d4d4d"
+            app:backgroundTint="@color/lightBlue"
+            android:background="@color/lightBlue"
             android:text="8" />
 
         <Button
@@ -128,7 +133,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:textSize="20sp"
-            android:background="#4d4d4d"
+            app:backgroundTint="@color/lightBlue"
+            android:background="@color/lightBlue"
             android:text="9" />
 
         <Button
@@ -136,8 +142,9 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="#4d4d4d"
-            android:textColor="@color/green"
+            app:backgroundTint="@color/lightBlue"
+            android:background="@color/lightBlue"
+            android:textColor="@color/darkBlue"
             android:textSize="30sp"
             android:text="×" />
     </LinearLayout>
@@ -154,7 +161,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:textSize="20sp"
-            android:background="#4d4d4d"
+            app:backgroundTint="@color/lightBlue"
+            android:background="@color/lightBlue"
             android:text="4" />
 
         <Button
@@ -163,7 +171,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:textSize="20sp"
-            android:background="#4d4d4d"
+            app:backgroundTint="@color/lightBlue"
+            android:background="@color/lightBlue"
             android:text="5" />
 
         <Button
@@ -172,7 +181,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:textSize="20sp"
-            android:background="#4d4d4d"
+            app:backgroundTint="@color/lightBlue"
+            android:background="@color/lightBlue"
             android:text="6" />
 
         <Button
@@ -180,8 +190,9 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="#4d4d4d"
-            android:textColor="@color/green"
+            app:backgroundTint="@color/lightBlue"
+            android:background="@color/lightBlue"
+            android:textColor="@color/darkBlue"
             android:textSize="30sp"
             android:text="-" />
     </LinearLayout>
@@ -198,7 +209,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:textSize="20sp"
-            android:background="#4d4d4d"
+            app:backgroundTint="@color/lightBlue"
+            android:background="@color/lightBlue"
             android:text="1" />
 
         <Button
@@ -207,7 +219,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:textSize="20sp"
-            android:background="#4d4d4d"
+            app:backgroundTint="@color/lightBlue"
+            android:background="@color/lightBlue"
             android:text="2" />
 
         <Button
@@ -216,7 +229,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:textSize="20sp"
-            android:background="#4d4d4d"
+            app:backgroundTint="@color/lightBlue"
+            android:background="@color/lightBlue"
             android:text="3" />
 
         <Button
@@ -224,8 +238,9 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="#4d4d4d"
-            android:textColor="@color/green"
+            app:backgroundTint="@color/lightBlue"
+            android:background="@color/lightBlue"
+            android:textColor="@color/darkBlue"
             android:textSize="30sp"
             android:text="+" />
     </LinearLayout>
@@ -242,7 +257,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:textSize="20sp"
-            android:background="#4d4d4d"
+            app:backgroundTint="@color/lightBlue"
+            android:background="@color/lightBlue"
             android:text="." />
 
         <Button
@@ -251,7 +267,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:textSize="20sp"
-            android:background="#4d4d4d"
+            app:backgroundTint="@color/lightBlue"
+            android:background="@color/lightBlue"
             android:text="0" />
 
 
@@ -262,7 +279,9 @@
             android:layout_height="match_parent"
             android:layout_weight="8"
             android:textSize="20sp"
-            android:background="@color/orange"
+            app:backgroundTint="@color/lightBlue"
+            android:background="@color/lightBlue"
+            android:textColor="@color/darkBlue"
             android:text="=" />
     </LinearLayout>
 </LinearLayout>
