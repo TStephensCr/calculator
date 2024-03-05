@@ -95,6 +95,8 @@ class MainActivity : AppCompatActivity() {
 
     // Function to set the current operator
     private fun setOperator(operator: String) {//problema quando fai num + num + num
+        if(currentInput.isEmpty())
+            if(operator == "-") {appendNumber("-"); return}
         if(firstNum == null){
             if(currentInput.isEmpty()) return
             firstNum = currentInput.toString().toDouble()
@@ -106,8 +108,6 @@ class MainActivity : AppCompatActivity() {
                 if(currentOperator == "")
                     currentOperator = operator
                 calculateResult()
-                firstNum = tvInput.toString().toDouble()
-                currentInput.clear()
                 currentOperator = operator
             }
         }
